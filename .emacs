@@ -90,7 +90,7 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize) ;; You might already have this line
 
-(unless package-archive-contents ;; Fetch the list of packages available 
+(unless package-archive-contents ;; Fetch the list of packages available
   (package-refresh-contents))
 
 (dolist (package package-list) ;; Install the missing packages
@@ -115,7 +115,7 @@
 ;; Whitespace
 (require 'whitespace)
 
-(add-hook 'prog-mode-hook 
+(add-hook 'prog-mode-hook
   (function (lambda ()
               (whitespace-mode t))))
 (setq whitespace-style '(face trailing spaces space-mark))

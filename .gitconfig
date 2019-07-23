@@ -1,3 +1,19 @@
 [user]
-	name = Dolf Barr
-	email = dolf.barr@gmail.com
+  name = Dolf Barr
+  email = dolf.barr@gmail.com
+[core]
+  editor = code --new-window --wait
+[merge]
+  tool = vscode
+[mergetool "vscode"]
+  cmd = code --new-window --wait $MERGED
+[diff]
+  tool = vscode
+[difftool "vscode"]
+  cmd = code --new-window --wait --diff
+[alias]
+  undo = reset --soft HEAD^
+  stash-all = stash save --include-untracked
+  loggy = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset'
+[push]
+  default = simple

@@ -75,7 +75,7 @@ then
   echo "Installing bumblebee"
   sudo dnf -y --nogpgcheck install http://install.linux.ncsu.edu/pub/yum/itecs/public/bumblebee/fedora$(rpm -E %fedora)/noarch/bumblebee-release-1.2-1.noarch.rpm
   # Managed Nvidia Repo
-  sudo dnf -y --nogpgcheck install http://install.linux.ncsu.edu/pub/yum/itecs/public/bumblebee-nonfree/fedora$(rpm -E %fedora)/noarch/bumblebee-nonfree-release-1.2-1.noarch.rpm 
+  sudo dnf -y --nogpgcheck install http://install.linux.ncsu.edu/pub/yum/itecs/public/bumblebee-nonfree/fedora$(rpm -E %fedora)/noarch/bumblebee-nonfree-release-1.2-1.noarch.rpm
   sudo dnf install bumblebee-nvidia bbswitch-dkms VirtualGL.x86_64 VirtualGL.i686 primus.x86_64 primus.i686 kernel-devel -y
 else
   echo "No bumblebee option passed, bumblebee installation skipped"
@@ -97,7 +97,7 @@ rm -rf ~/.local/share/themes/{Adapta,Adapta-Eta,Adapta-Nokto,Adapta-Nokto-Eta}
 rm -rf ~/.themes/{Adapta,Adapta-Eta,Adapta-Nokto,Adapta-Nokto-Eta}
 
 #Install Theme
-git clone https://github.com/adapta-project/adapta-gtk-theme.git ~/temp/adapta 
+git clone https://github.com/adapta-project/adapta-gtk-theme.git ~/temp/adapta
 cd ~/temp/adapta
 ./autogen.sh --enable-parallel --disable-cinnamon --disable-unity --disable-mate --disable-openbox --enable-gtk_legacy --enable-gtk_next
 make && sudo make install
