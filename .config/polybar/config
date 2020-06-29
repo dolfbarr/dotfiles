@@ -1,0 +1,326 @@
+[colors]
+background = #2E3440
+foreground = #E5E9F0
+blue=#81A1C1
+red=#BF616A
+green=#A3BE8C
+yellow=#EBCB8B
+magenta=#B48EAD
+cyan=#88C0D0
+accented=#5E81AC
+hideout=#4C566A
+
+[global/wm]
+margin-top = 5
+margin-bottom = 100
+
+[bar/nordbar]
+monitor =
+monitor-fallback =
+
+padding = 0
+
+font-0 = Fira Code Retina:style=Retina:size=10;1
+font-1 = Open Sans Hebrew:style=Regular:size=10;1
+font-2 = Material Icons:size=10;3
+font-3 = Font Awesome 5 Free:size=10;3
+font-4 = FontAwesome:size=10;2
+
+
+dpi-x = 96
+dpi-y = 96
+
+wm-restack = i3
+
+tray-position = right
+tray-padding=1
+tray-scale = 1.0
+tray-background=${colors.blue}
+tray-margin=0
+
+fixed-center = true
+
+width = 99%
+height = 24
+
+override-redirect = true
+offset-x = 0.5%
+offset-y = 10
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+line-size = 3
+border-size = 0
+border-color = ${colors.background}
+
+module-margin-left = 0
+module-margin-right = 0
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+modules-left = i3
+modules-center = time-SF time-NY time time-tsk time-BR
+modules-right = date system-usb-udev cpu memory temp-mother temp-gpu temp-cpu arch-aur-updates layout wifi audio
+
+[module/i3]
+type = internal/i3
+enable-click = true
+enable-scroll = true
+format = <label-state> <label-mode>
+pin-workspaces = true
+
+label-mode = %mode%
+label-mode-padding = 1
+label-mode-foreground =${colors.background}
+label-mode-background =${colors.accented}
+
+label-focused =  %name%
+label-focused-background = ${colors.blue}
+label-focused-foreground = ${colors.background}
+label-focused-padding = 1
+
+label-unfocused =  %name%
+label-unfocused-padding = 1
+label-unfocused-background = ${colors.background}
+label-unfocused-foreground = ${colors.foreground}
+
+label-visible = %name%
+label-visible-background = ${colors.background}
+label-visible-foreground = ${colors.foreground}
+label-visible-padding = 1
+
+label-urgent = %name%
+label-urgent-background = ${colors.background}
+label-urgent-foreground = ${colors.foreground}
+label-urgent-padding = 1
+label-urgent-underline = ${colors.yellow}
+
+[module/time]
+type = internal/date
+interval = 1.0
+time = %H:%M
+label = %time%
+label-font = 2
+label-margin = 1
+
+[module/date]
+type = internal/date
+date = %d %b '%y, %a
+label =  %date%
+label-margin = 1
+format = <label>
+format-foreground =  ${colors.hideout}
+label-font = 2
+
+
+[module/audio]
+type = internal/pulseaudio
+format-volume = <ramp-volume>
+label-muted-foreground = ${colors.background}
+label-muted =  
+ramp-volume-0 = 🔈 
+ramp-volume-1 = 🔉 
+ramp-volume-2 = 🔊 
+use-ui-max = false
+interval = 5
+ramp-volume-background = ${colors.blue}
+ramp-volume-padding-right=1
+label-muted-padding-right=1
+
+[module/wifi]
+type = internal/network
+interface = wlo1
+interval = 5
+
+label-connected = 
+
+label-disconnected = 
+label-disconnected-foreground = ${colors.background}
+
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+
+label-connected-padding-left = 1
+label-connected-margin-left = 0
+label-disconnected-padding-left = 1
+
+format-connected-background = ${colors.blue}
+format-disconnected-background = ${colors.blue}
+
+[module/layout]
+type = internal/xkeyboard
+label-layout = %icon%
+format = <label-layout>
+format-spacing = 0
+
+layout-icon-default = en
+layout-icon-0 = us;en
+layout-icon-1 = ru;ru
+label-layout-padding-left = 1
+label-layout-padding-right = 0
+label-layout-background=${colors.blue}
+label-layout-margin=0
+layout-icon-margin = 0
+
+[module/time-tsk]
+type = custom/script
+exec = TZ=Asia/Novosibirsk date +"TK: %H:%M"
+interval = 30
+format-foreground =  ${colors.hideout}
+label-margin-right=1
+label-font = 2
+
+[module/time-NY]
+type = custom/script
+exec = TZ=America/New_York date +"NY: %H:%M"
+interval = 30
+format-foreground =  ${colors.hideout}
+label-margin-left=1
+label-font = 2
+
+[module/time-SF]
+type = custom/script
+exec = TZ=America/Los_Angeles date +"SF: %H:%M"
+interval = 30
+format-foreground =  ${colors.hideout}
+label-font = 2
+
+[module/time-BR]
+type = custom/script
+exec = TZ=Europe/London date +"BR: %H:%M"
+interval = 30
+format-foreground =  ${colors.hideout}
+label-font = 2
+
+[module/memory]
+type = internal/memory
+interval = 1
+label = %gb_used:7% / %gb_swap_used:7%
+label-padding=1
+
+format = <label>
+format-underline = ${colors.green}
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+[module/cpu]
+type=internal/cpu
+interval = 1
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-underline = ${colors.yellow}
+format = <label>
+label = %percentage:2%%
+label-padding=1
+
+[module/temp-cpu]
+type = internal/temperature
+; Thermal zone to use
+; To list all the zone types, run
+; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+; Default: 0
+thermal-zone = 0
+
+; Full path of temperature sysfs path
+; Use `sensors` to find preferred temperature source, then run
+; $ for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
+; to find path to desired file
+; Default reverts to thermal zone setting
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input
+
+warn-temperature = 60
+format = <label>
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-underline = ${colors.magenta}
+format-warn = <label-warn>
+format-warn-underline = ${colors.magenta}
+label = C: %temperature:4%
+label-warn = C: %temperature:4%
+label-warn-padding=1
+label-padding=1
+label-warn-background = ${colors.background}
+label-warn-foreground = ${colors.red}
+
+[module/temp-gpu]
+type = internal/temperature
+; Thermal zone to use
+; To list all the zone types, run
+; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+; Default: 0
+thermal-zone = 0
+
+; Full path of temperature sysfs path
+; Use `sensors` to find preferred temperature source, then run
+; $ for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
+; to find path to desired file
+; Default reverts to thermal zone setting
+hwmon-path = /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/hwmon/hwmon4/temp1_input
+
+warn-temperature = 60
+format = <label>
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-underline = ${colors.cyan}
+format-warn = <label-warn>
+format-warn-underline = ${colors.cyan}
+label = G: %temperature:4%
+label-warn = G: %temperature:4%
+label-warn-padding=1
+label-padding=1
+label-warn-background = ${colors.background}
+label-warn-foreground = ${colors.red}
+
+[module/temp-mother]
+type = internal/temperature
+; Thermal zone to use
+; To list all the zone types, run
+; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+; Default: 0
+thermal-zone = 0
+
+; Full path of temperature sysfs path
+; Use `sensors` to find preferred temperature source, then run
+; $ for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
+; to find path to desired file
+; Default reverts to thermal zone setting
+hwmon-path = /sys/devices/virtual/thermal/thermal_zone2/hwmon1/temp1_input
+
+warn-temperature = 60
+format = <label>
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-underline = ${colors.foreground}
+format-warn = <label-warn>
+format-warn-underline = ${colors.foreground}
+label = M: %temperature:4%
+label-warn = M: %temperature:4%
+label-warn-padding=1
+label-padding=1
+label-warn-background = ${colors.background}
+label-warn-foreground = ${colors.red}
+
+[module/arch-aur-updates]
+type = custom/script
+exec = ~/.config/polybar/scripts/check-all-updates.sh --all
+click-left = ~/.config/polybar/scripts/check-all-updates.sh --arch
+click-right = ~/.config/polybar/scripts/check-all-updates.sh --aur
+interval = 1000
+label = %output%
+format = <label>
+format-foreground = ${colors.background}
+format-background = ${colors.yellow}
+label-padding = 1
+
+[module/system-usb-udev]
+type = custom/script
+exec = ~/.config/polybar/scripts/system-usb-udev.sh
+tail = true
+label-padding = 1
+click-left = ~/.config/polybar/scripts/system-usb-udev.sh --mount
+click-right = ~/.config/polybar/scripts/system-usb-udev.sh --unmount
