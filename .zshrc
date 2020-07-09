@@ -1,14 +1,12 @@
+# zmodload zsh/zprof
+source ~/.config/antigen.zsh
+antigen use oh-my-zsh
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME="spaceship"
@@ -33,7 +31,7 @@ ZSH_THEME="spaceship"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
+DISABLE_MAGIC_FUNCTIONS=true
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -68,17 +66,23 @@ ZSH_THEME="spaceship"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-    git
-    dnf
-    docker
-    docker-compose
-    node
-    npm
-    nvm
-    tig
-    yarn
-)
+
+
+
+antigen bundle git
+antigen bundle docker
+antigen bundle docker-compose
+antigen bundle node
+antigen bundle npm
+# antigen bundle nvm
+antigen bundle yarn
+
+antigen theme spaceship
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="spaceship"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -116,38 +120,24 @@ SPACESHIP_PROMPT_ORDER=(
   package     # Package version
   node          # Node.js section
   pyenv         # Pyenv section
-  kubecontext   # Kubectl context section
+  # kubecontext   # Kubectl context section
   exec_time     # Execution time
   line_sep      # Line break
-  battery       # Battery level and status
+  # battery       # Battery level and status
   jobs          # Background jobs indicator
   exit_code     # Exit code section
   char          # Prompt character
 )
 
-
-declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
-
-NODE_GLOBALS+=("node")
-NODE_GLOBALS+=("nvm")
-
-load_nvm () {
-    export NVM_DIR=~/.nvm
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-}
-
-for cmd in "${NODE_GLOBALS[@]}"; do
-    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
-done
 fpath=($fpath "/home/dolf/.zfunctions")
-
   # Set Spaceship ZSH as a prompt
   autoload -U compinit promptinit; promptinit; compinit
   prompt spaceship
 fpath=($fpath "/home/dolf/.zfunctions")
 
+alias pbcopy="xclip -selection clipboard"
+alias pbpaste="xclip -selection clipboard -o"
+source ~/.bash_profile
 
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/dolf/.sdkman"
-[[ -s "/home/dolf/.sdkman/bin/sdkman-init.sh" ]] && source "/home/dolf/.sdkman/bin/sdkman-init.sh"
+antigen apply
+# zprof
