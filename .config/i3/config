@@ -18,10 +18,6 @@ set $alt Mod1
 # compton
 exec --no-startup-id "compton &"
 
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
@@ -36,8 +32,6 @@ exec --no-startup-id feh --bg-scale ~/pictures/wallpapers/wall-pine.jpg
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 exec --no-startup-id dunst
-
-exec --no-startup-id xss-lock -- i3lock -n -i ~/pictures/wallpapers/wallpaper.jpg &
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -113,6 +107,7 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
+set $ws0 "~"
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -122,9 +117,10 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws5 "5"
+set $ws10 "10"
 
 # switch to workspace
+bindsym $mod+grave workspace $ws0
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -134,9 +130,10 @@ bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws5
+bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
+bindsym $alt+Shift+grave move container to workspace $ws0
 bindsym $alt+Shift+1 move container to workspace $ws1
 bindsym $alt+Shift+2 move container to workspace $ws2
 bindsym $alt+Shift+3 move container to workspace $ws3
@@ -146,9 +143,10 @@ bindsym $alt+Shift+6 move container to workspace $ws6
 bindsym $alt+Shift+7 move container to workspace $ws7
 bindsym $alt+Shift+8 move container to workspace $ws8
 bindsym $alt+Shift+9 move container to workspace $ws9
-bindsym $alt+Shift+0 move container to workspace $ws5
+bindsym $alt+Shift+0 move container to workspace $ws10
 
 # move focused container to workspace and focus it
+bindsym $mod+Shift+grave move container to workspace $ws0 focus; workspace $ws0
 bindsym $mod+Shift+1 move container to workspace $ws1 focus; workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2 focus; workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3 focus; workspace $ws3
@@ -158,7 +156,7 @@ bindsym $mod+Shift+6 move container to workspace $ws6 focus; workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7 focus; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8 focus; workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9 focus; workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws5 focus; workspace $ws5
+bindsym $mod+Shift+0 move container to workspace $ws5 focus; workspace $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

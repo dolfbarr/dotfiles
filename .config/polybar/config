@@ -73,6 +73,7 @@ enable-click = true
 enable-scroll = true
 format = <label-state> <label-mode>
 pin-workspaces = true
+index-sort = true
 
 label-mode = %mode%
 label-mode-padding = 1

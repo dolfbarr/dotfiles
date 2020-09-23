@@ -139,5 +139,8 @@ alias pbcopy="xclip -selection clipboard"
 alias pbpaste="xclip -selection clipboard -o"
 source ~/.bash_profile
 
+export DENO_INSTALL="/home/dolf/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
 antigen apply
 # zprof
