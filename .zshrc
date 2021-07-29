@@ -1,3 +1,5 @@
+
+ZSH_DISABLE_COMPFIX=true
 # zmodload zsh/zprof
 source ~/.config/antigen.zsh
 antigen use oh-my-zsh
@@ -70,23 +72,13 @@ DISABLE_MAGIC_FUNCTIONS=true
 
 
 antigen bundle git
-antigen bundle docker
-antigen bundle docker-compose
-antigen bundle node
-antigen bundle npm
-# antigen bundle nvm
-antigen bundle yarn
 
-antigen theme spaceship
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
+# antigen theme denysdovhan/spaceship-prompt
 
 source $ZSH/oh-my-zsh.sh
 
-SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_DOCKER_SHOW='false'
+
 
 # User configuration
 
@@ -114,33 +106,44 @@ SPACESHIP_PROMPT_ADD_NEWLINE=false
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-SPACESHIP_PROMPT_ORDER=(
-  dir           # Current directory section
-  git           # Git section (git_branch + git_status)
-  package     # Package version
-  node          # Node.js section
-  pyenv         # Pyenv section
-  # kubecontext   # Kubectl context section
-  exec_time     # Execution time
-  line_sep      # Line break
-  # battery       # Battery level and status
-  jobs          # Background jobs indicator
-  exit_code     # Exit code section
-  char          # Prompt character
-)
 
-fpath=($fpath "/home/dolf/.zfunctions")
-  # Set Spaceship ZSH as a prompt
-  autoload -U compinit promptinit; promptinit; compinit
-  prompt spaceship
-fpath=($fpath "/home/dolf/.zfunctions")
+# fpath=($fpath "/Users/dolf/.zfunctions")
+#   # Set Spaceship ZSH as a prompt
+#   autoload -Uz compinit promptinit; promptinit; compinit
+#   prompt spaceship
+# fpath=($fpath "/Users/dolf/.zfunctions")
 
-alias pbcopy="xclip -selection clipboard"
-alias pbpaste="xclip -selection clipboard -o"
 source ~/.bash_profile
 
-export DENO_INSTALL="/home/dolf/.deno"
+export DENO_INSTALL="/Users/dolf/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 antigen apply
 # zprof
+  # Set Spaceship ZSH as a prompt
+  # autoload -Uz promptinit; promptinit
+  # prompt spaceship
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
+
+eval "$(zoxide init zsh)"
+
+eval "$(fnm --log-level=quiet env --use-on-cd)"
+
+# general use
+alias ls='exa'
+alias l='exa -lah --git'
+
+alias fan='sudo powermetrics --samplers smc |grep -i "Fan\|CPU die"'
+
+alias gundo='git reset --soft HEAD~1'
+
+alias edit='code'
+alias e='edit'
+
+alias ydl='youtube-dl'
+alias ydlb='youtube-dl -f bestvideo+bestaudio'
+
+. ~/.zsh_aliases
+
+eval "$(starship init zsh)"
