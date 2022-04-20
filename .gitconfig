@@ -1,6 +1,7 @@
 [user]
   name = Dolf Barr
 	email = mail@dolf.me
+	signingkey = F767A2FA
 [core]
   editor = code --new-window --wait
 [merge]
@@ -24,3 +25,7 @@
 	clean = git-lfs clean -- %f
 [init]
 	defaultBranch = main
+[commit]
+	gpgSign = true
+[tag]
+	gpgSign = true
