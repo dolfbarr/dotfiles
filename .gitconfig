@@ -1,6 +1,6 @@
 [user]
   name = Dolf Barr
-  email = dolf.barr@gmail.com
+	email = mail@dolf.me
 [core]
   editor = code --new-window --wait
 [merge]
