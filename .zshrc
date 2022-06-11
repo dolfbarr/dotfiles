@@ -1,5 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-. "$HOME/.fig/shell/zshrc.pre.zsh"
 ZSH_DISABLE_COMPFIX=true
 # zmodload zsh/zprof
 source ~/.config/antigen.zsh
@@ -148,9 +146,6 @@ alias ydlb='youtube-dl -f bestvideo+bestaudio'
 . ~/.zsh_aliases
 
 eval "$(starship init zsh)"
-
-# Fig post block. Keep at the bottom of this file.
-. "$HOME/.fig/shell/zshrc.post.zsh"
 
 export GPG_TTY=$(tty)
 gpgconf --launch gpg-agent

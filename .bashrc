@@ -1,5 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-. "$HOME/.fig/shell/bashrc.pre.bash"
 # .bashrc
 
 # Source global definitions
@@ -26,6 +24,3 @@ export NVM_DIR="$HOME/.nvm"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/dolf/.sdkman"
 [[ -s "/home/dolf/.sdkman/bin/sdkman-init.sh" ]] && source "/home/dolf/.sdkman/bin/sdkman-init.sh"
-
-# Fig post block. Keep at the bottom of this file.
-. "$HOME/.fig/shell/bashrc.post.bash"

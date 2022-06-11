@@ -26,6 +26,6 @@
 [init]
 	defaultBranch = main
 [commit]
-	gpgSign = true
+	gpgSign = false
 [tag]
 	gpgSign = true
