@@ -140,6 +140,8 @@ alias gundo='git reset --soft HEAD~1'
 alias edit='code'
 alias e='edit'
 
+alias 1t='one-thing'
+
 alias ydl='youtube-dl'
 alias ydlb='youtube-dl -f bestvideo+bestaudio'
 
