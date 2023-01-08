@@ -123,6 +123,9 @@ antigen apply
   # autoload -Uz promptinit; promptinit
   # prompt spaceship
 
+autoload -U promptinit; promptinit
+prompt pure
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
 
 eval "$(fnm --log-level=quiet env --use-on-cd)"
@@ -146,8 +149,6 @@ alias ydl='youtube-dl'
 alias ydlb='youtube-dl -f bestvideo+bestaudio'
 
 . ~/.zsh_aliases
-
-eval "$(starship init zsh)"
 
 export GPG_TTY=$(tty)
 gpgconf --launch gpg-agent
