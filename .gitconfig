@@ -30,3 +30,5 @@
 	gpgSign = false
 [tag]
 	gpgSign = true
+[pull]
+	ff = only

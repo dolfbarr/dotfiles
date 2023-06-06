@@ -6,3 +6,12 @@ alias nl="npm run lint"
 alias ni="npm install"
 alias nid="npm install -D"
 alias nci="npm ci"
+
+ua() {
+  brew update-reset && brew upgrade ; softwareupdate -i -a ; mac-cleanup ; brew doctor ; omz update
+}
+
+ft() {
+  sudo pkill TouchBarServer
+  sudo killall "ControlStrip"
+}

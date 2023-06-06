@@ -115,7 +115,7 @@ SPACESHIP_DOCKER_SHOW='false'
 source ~/.bash_profile
 
 export DENO_INSTALL="/Users/dolf/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
+export PATH="/usr/local/sbin:$DENO_INSTALL/bin:$PATH"
 
 antigen apply
 # zprof
@@ -152,3 +152,5 @@ alias ydlb='youtube-dl -f bestvideo+bestaudio'
 
 export GPG_TTY=$(tty)
 gpgconf --launch gpg-agent
+
+zstyle :prompt:pure:prompt:success color greenexport
