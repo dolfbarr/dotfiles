@@ -71,6 +71,7 @@ DISABLE_MAGIC_FUNCTIONS=true
 
 
 antigen bundle git
+antigen bundle agkozak/zsh-z
 
 # antigen theme denysdovhan/spaceship-prompt
 
@@ -130,8 +131,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 eval "$(fnm --log-level=quiet env --use-on-cd)"
 
-. $(brew --prefix)/etc/profile.d/z.sh
-
 # general use
 alias ls='exa'
 alias l='exa -lah --git'
@@ -148,9 +147,29 @@ alias 1t='one-thing'
 alias ydl='youtube-dl'
 alias ydlb='youtube-dl -f bestvideo+bestaudio'
 
+ZSHZ_TILDE=1
+ZSHZ_TRAILING_SLASH=1
+
 . ~/.zsh_aliases
 
 export GPG_TTY=$(tty)
 gpgconf --launch gpg-agent
 
 zstyle :prompt:pure:prompt:success color greenexport
+# pnpm
+export PNPM_HOME="/Users/dolf/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# pycharm
+
+export PATH=/Applications/PyCharm.app/Contents/MacOS:$PATH
+
+function py() {
+    pycahrm > /dev/null 2>&1 &
+}
+
+# pycharm end
