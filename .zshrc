@@ -73,11 +73,16 @@ DISABLE_MAGIC_FUNCTIONS=true
 antigen bundle git
 antigen bundle agkozak/zsh-z
 
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
+
 # antigen theme denysdovhan/spaceship-prompt
 
 source $ZSH/oh-my-zsh.sh
 
 SPACESHIP_DOCKER_SHOW='false'
+
+
 
 
 # User configuration
@@ -143,9 +148,6 @@ alias edit='code'
 alias e='edit'
 
 alias 1t='one-thing'
-
-alias ydl='youtube-dl'
-alias ydlb='youtube-dl -f bestvideo+bestaudio'
 
 ZSHZ_TILDE=1
 ZSHZ_TRAILING_SLASH=1
